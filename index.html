@@ -262,6 +262,100 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 </style>
 
+
+<style id="portfolio-v6-fixes">
+/* V6: text-led skills/tools; compact, balanced experience card */
+#skills .skill-card img, #tools .tool-card img { display:none !important; }
+#tools .tool-card > div { margin-top:0 !important; }
+.experience-card {
+  width: min(100%, 1100px) !important;
+  margin-inline: auto !important;
+  padding: 34px 38px !important;
+  grid-template-columns: 235px minmax(0,1fr) !important;
+  gap: 42px !important;
+  min-height: 0 !important;
+}
+.exp-side {
+  min-height: 300px !important;
+  padding: 34px !important;
+}
+.exp-body { padding: 10px 0 !important; }
+.exp-columns { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 52px !important; }
+.exp-columns h4 { margin-bottom: 16px !important; }
+.exp-columns li { margin-bottom: 12px !important; line-height: 1.6 !important; }
+@media (max-width: 900px) {
+  .experience-card { grid-template-columns: 1fr !important; padding: 26px !important; }
+  .exp-side { min-height: 220px !important; }
+  .exp-columns { grid-template-columns: 1fr !important; gap: 28px !important; }
+}
+</style>
+
+<style id="no-tool-images-and-card-layout">
+  /* NO IMAGES in Skills or Tools */
+  #skills img,
+  #tools img {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Tools: compact, balanced cards with no reserved icon/image area */
+  #tools .tools-grid {
+    align-items: stretch !important;
+  }
+  #tools .tool-card {
+    min-height: 240px !important;
+    height: auto !important;
+    padding: 30px 28px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    transform-style: preserve-3d !important;
+  }
+  #tools .tool-card > div {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateZ(16px);
+  }
+  #tools .tool-card small {
+    display: block !important;
+    margin: 0 0 14px !important;
+  }
+  #tools .tool-card h3 {
+    margin: 0 0 12px !important;
+  }
+  #tools .tool-card p {
+    margin: 0 0 18px !important;
+    line-height: 1.55 !important;
+  }
+  #tools .tool-card b {
+    display: block !important;
+    margin-top: auto !important;
+  }
+
+  /* Skills: text-only cards; no image spacing */
+  #skills .skill-card {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 26px !important;
+  }
+
+  /* Keep work-experience proportions compact and readable */
+  #experience .experience-card {
+    width: min(100%, 1040px) !important;
+    max-width: 1040px !important;
+  }
+
+  @media (max-width: 900px) {
+    #tools .tool-card {
+      min-height: 0 !important;
+      padding: 26px 24px !important;
+    }
+  }
+</style>
+
 </head>
 <body>
   <div class="progress-line" id="progressLine"></div>
@@ -344,12 +438,12 @@ He enjoys understanding audiences, translating brand ideas into content, researc
       <div class="section-head light reveal"><span class="section-number">07</span><div><p class="kicker">TOOLS & PLATFORMS</p><h2>Tools for creating,<br><em>researching & measuring.</em></h2></div></div>
       <p class="section-intro light-copy reveal">A balanced toolkit across social media, content creation, research and analytics, reflecting the skills listed in my CVs.</p>
       <div class="tools-grid">
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Used to create Instagram posts, promotional creatives, Reel covers, carousels and marketing visuals.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning tool included in my social media marketing toolkit.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH / ANALYTICS</small><h3>Google Trends</h3><p>Used for trend awareness, search-interest research and understanding audience interests.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>Microsoft Excel</h3><p>Used for data organization, calculations, tracking and basic marketing-performance analysis.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>BUSINESS INTELLIGENCE</small><h3>Power BI</h3><p>Interactive dashboards and data visualization for turning structured data into business insights.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQL logo"><div><small>DATA ANALYTICS</small><h3>SQL</h3><p>SQL-based querying and data analysis for exploring structured datasets and extracting business insights.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal" data-tilt><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Used to create Instagram posts, promotional creatives, Reel covers, carousels and marketing visuals.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning tool included in my social media marketing toolkit.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><div><small>RESEARCH / ANALYTICS</small><h3>Google Trends</h3><p>Used for trend awareness, search-interest research and understanding audience interests.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal" data-tilt><div><small>DATA ANALYSIS</small><h3>Microsoft Excel</h3><p>Used for data organization, calculations, tracking and basic marketing-performance analysis.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><div><small>BUSINESS INTELLIGENCE</small><h3>Power BI</h3><p>Interactive dashboards and data visualization for turning structured data into business insights.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><div><small>DATA ANALYTICS</small><h3>SQL</h3><p>SQL-based querying and data analysis for exploring structured datasets and extracting business insights.</p><b>Working Knowledge</b></div></article>
       </div>
       <p class="tool-note reveal">A mixed toolkit across social media, creative production, research and analytics.</p>
     </section>

@@ -128,6 +128,140 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+<style id="portfolio-final-refinements">
+/* WORK EXPERIENCE — compact card, wider identity panel, better spacing */
+#experience .experience-card {
+  width: min(100%, 1060px) !important;
+  max-width: 1060px !important;
+  margin: 0 auto 26px !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: 285px minmax(0, 1fr) !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
+  transform-style: preserve-3d !important;
+  transition: transform .35s ease, box-shadow .35s ease !important;
+}
+#experience .experience-card:last-child {
+  margin-bottom: 0 !important;
+}
+#experience .experience-card:hover {
+  transform: translateY(-6px) rotateX(1deg) rotateY(-1deg) !important;
+}
+#experience .experience-card .exp-side {
+  min-height: 325px !important;
+  padding: 34px 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+#experience .experience-card .exp-mark {
+  font-size: 66px !important;
+  line-height: .9 !important;
+  letter-spacing: -3px !important;
+  opacity: .22 !important;
+}
+#experience .experience-card .exp-date {
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  letter-spacing: 1.5px !important;
+}
+#experience .experience-card .exp-body {
+  padding: 34px 42px 36px !important;
+  min-width: 0 !important;
+}
+#experience .experience-card .exp-body > h3 {
+  margin: 10px 0 28px !important;
+  font-size: clamp(32px, 3vw, 44px) !important;
+  line-height: 1.05 !important;
+}
+#experience .experience-card .exp-columns {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.15fr) minmax(210px, .85fr) !important;
+  gap: 52px !important;
+}
+#experience .experience-card .exp-columns h4 {
+  margin: 0 0 15px !important;
+}
+#experience .experience-card .exp-columns ul {
+  margin: 0 !important;
+  padding-left: 19px !important;
+}
+#experience .experience-card .exp-columns li {
+  margin: 0 0 11px !important;
+  line-height: 1.5 !important;
+}
+#experience .experience-card .exp-columns li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Keep skills as text/cards only — no images. */
+#skills .skill-card img {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  #experience .experience-card {
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+  }
+  #experience .experience-card .exp-side {
+    min-height: 300px !important;
+    padding: 28px 24px !important;
+  }
+  #experience .experience-card .exp-body {
+    padding: 30px !important;
+  }
+  #experience .experience-card .exp-columns {
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+  }
+}
+@media (max-width: 620px) {
+  #experience .experience-card {
+    grid-template-columns: 1fr !important;
+  }
+  #experience .experience-card .exp-side {
+    min-height: 190px !important;
+  }
+}
+</style>
+
+
+<style id="experience-size-fix">
+#experience .experience-card {
+  box-sizing: border-box !important;
+  width: min(100%, 1040px) !important;
+  max-width: 1040px !important;
+  grid-template-columns: 300px minmax(0, 1fr) !important;
+  margin-bottom: 22px !important;
+}
+#experience .experience-card .exp-side {
+  min-height: 300px !important;
+  padding: 30px 30px !important;
+}
+#experience .experience-card .exp-body {
+  padding: 30px 38px 32px !important;
+}
+#experience .experience-card .exp-body > h3 {
+  font-size: clamp(30px, 2.8vw, 40px) !important;
+  margin: 8px 0 24px !important;
+}
+#experience .experience-card .exp-columns {
+  gap: 42px !important;
+}
+#experience .experience-card .exp-columns li {
+  margin-bottom: 9px !important;
+  line-height: 1.45 !important;
+}
+#experience .experience-card .exp-mark {
+  font-size: 72px !important;
+}
+</style>
+
 </head>
 <body>
   <div class="progress-line" id="progressLine"></div>
@@ -210,15 +344,14 @@ He enjoys understanding audiences, translating brand ideas into content, researc
       <div class="section-head light reveal"><span class="section-number">07</span><div><p class="kicker">TOOLS & PLATFORMS</p><h2>Tools for creating,<br><em>researching & measuring.</em></h2></div></div>
       <p class="section-intro light-copy reveal">A balanced toolkit across social media, content creation, research and analytics, reflecting the skills listed in my CVs.</p>
       <div class="tools-grid">
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Design and creative tool included in my social media and content skill set.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management tool listed in my social media marketing skills.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH</small><h3>Google Trends</h3><p>Research and trend-awareness tool listed in my analytics and marketing toolkit.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>MS Excel</h3><p>Spreadsheet and data-analysis tool listed in my analytics skills.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>DATA ANALYTICS</small><h3>Power BI</h3><p>Business intelligence and data-visualization tool listed in my analytics skills.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQL logo"><div><small>DATA ANALYTICS</small><h3>SQL</h3><p>Database querying skill listed in my data-analysis toolkit.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/python" alt="Python logo"><div><small>DATA ANALYTICS</small><h3>Python</h3><p>Python is included in my CV at a basic level as part of my data-analysis toolkit.</p><b>Basic</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Used to create Instagram posts, promotional creatives, Reel covers, carousels and marketing visuals.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning tool included in my social media marketing toolkit.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH / ANALYTICS</small><h3>Google Trends</h3><p>Used for trend awareness, search-interest research and understanding audience interests.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>Microsoft Excel</h3><p>Used for data organization, calculations, tracking and basic marketing-performance analysis.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>BUSINESS INTELLIGENCE</small><h3>Power BI</h3><p>Interactive dashboards and data visualization for turning structured data into business insights.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQL logo"><div><small>DATA ANALYTICS</small><h3>SQL</h3><p>SQL-based querying and data analysis for exploring structured datasets and extracting business insights.</p><b>Working Knowledge</b></div></article>
       </div>
-      <p class="tool-note reveal">Marketing and analytics tools are presented together to reflect a broader, mixed marketing profile.</p>
+      <p class="tool-note reveal">A mixed toolkit across social media, creative production, research and analytics.</p>
     </section>
 
     <section class="section cream" id="certifications">

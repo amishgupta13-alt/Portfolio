@@ -12,6 +12,90 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2316283d'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-family='Arial' font-size='38' font-weight='700' fill='%23f5ead7'%3EAG%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css" />
   <style>.contact-grid-single{grid-template-columns:minmax(0,1fr);justify-items:end}.contact-grid-single .contact-panel{width:min(100%,680px)}</style>
+
+<style>
+/* Portfolio refinements: balanced marketing + analytics, stronger card depth */
+.experience-card {
+  gap: 34px !important;
+  padding: 42px !important;
+}
+.experience-card + .experience-card {
+  margin-top: 28px !important;
+}
+.exp-columns {
+  gap: 48px !important;
+}
+.exp-columns > div {
+  padding: 8px 0;
+}
+.exp-columns h4 {
+  margin-bottom: 18px !important;
+}
+.exp-columns ul {
+  margin-top: 0 !important;
+  padding-left: 22px !important;
+}
+.exp-columns li {
+  margin-bottom: 12px !important;
+  line-height: 1.65 !important;
+}
+.experience-card,
+.project-card,
+.tool-card,
+.skill-card,
+.education-card,
+.cert-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.experience-card:hover,
+.project-card:hover,
+.tool-card:hover,
+.skill-card:hover,
+.education-card:hover,
+.cert-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.experience-card::after,
+.project-card::after,
+.tool-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform: translateZ(1px);
+}
+.tool-card {
+  perspective: 1000px;
+  transition: transform .18s ease-out, box-shadow .25s ease;
+}
+.tool-card > * {
+  transform: translateZ(18px);
+}
+.exp-body, .project-content, .skill-card > *, .edu-main, .cert-body {
+  transform: translateZ(10px);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('[data-tilt]');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform =
+        `perspective(1000px) rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) translateY(-7px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+});
+</script>
+
 </head>
 <body>
   <div class="progress-line" id="progressLine"></div>
@@ -27,9 +111,9 @@
     <section class="hero section" id="home">
       <div class="hero-grid">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><span></span> SOCIAL MEDIA × DIGITAL MARKETING</div>
+          <div class="eyebrow"><span></span> MARKETING × ANALYTICS</div>
           <h1>Amish <em>Gupta</em></h1>
-          <p class="role-line">BBA Student · Social Media Marketing · Digital Marketing · Product Marketing</p>
+          <p class="role-line">BBA Student · Social Media Marketing · Digital Marketing · Marketing Analytics</p>
           <p class="hero-intro">Amish Gupta is a second-year BBA student at Somaiya Vidyavihar University focused on Social Media Marketing, Digital Marketing and Product Marketing, with supporting skills in Marketing Analytics.
 
 He enjoys understanding audiences, translating brand ideas into content, researching competitors and trends, and thinking about how creative communication can support real business objectives. His experience spans social media content, SEO, competitor research, content planning and performance-focused marketing.</p>
@@ -83,24 +167,28 @@ He enjoys understanding audiences, translating brand ideas into content, researc
       <p class="section-intro reveal">Core capabilities drawn from my CV and practical work. These represent areas I am actively developing through projects and experience.</p>
       <div class="skills-grid">
         <article class="skill-card reveal"><div class="skill-head"><h3>Social Media Marketing</h3><b>CORE</b></div><div class="bar"><i style="--w:88%"></i></div><div class="skill-list"><span>Content Strategy</span><span>Instagram Planning</span><span>Hooks & CTAs</span><span>Social Media KPIs</span></div></article>
-        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Digital Marketing</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>SEO</span><span>Keyword Research</span><span>Paid Advertising</span><span>Campaign Planning</span></div></article>
-        <article class="skill-card reveal delay-2"><div class="skill-head"><h3>Marketing & Strategy</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>Competitor Research</span><span>Market Research</span><span>Brand Positioning</span><span>Audience Understanding</span></div></article>
-        <article class="skill-card reveal"><div class="skill-head"><h3>Content & Creative</h3><b>CORE</b></div><div class="bar"><i style="--w:86%"></i></div><div class="skill-list"><span>Canva</span><span>Reels & Carousels</span><span>Visual Brand Consistency</span><span>Photography</span></div></article>
-        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Analytics Support</h3><b>SUPPORT</b></div><div class="bar"><i style="--w:68%"></i></div><div class="skill-list"><span>MS Excel</span><span>Google Trends</span><span>Content Performance</span><span>Data Visualization</span></div></article>
+        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Digital Marketing & SEO</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>SEO</span><span>Keyword Research</span><span>Campaign Planning</span><span>Paid Advertising</span></div></article>
+        <article class="skill-card reveal delay-2"><div class="skill-head"><h3>Marketing & Strategy</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>Market Research</span><span>Competitor Analysis</span><span>Brand Positioning</span><span>Audience Understanding</span></div></article>
+        <article class="skill-card reveal"><div class="skill-head"><h3>Analytics & Data</h3><b>SUPPORT</b></div><div class="bar"><i style="--w:76%"></i></div><div class="skill-list"><span>SQL</span><span>Power BI</span><span>MS Excel</span><span>Data Visualization</span></div></article>
+        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Content & Creative</h3><b>CORE</b></div><div class="bar"><i style="--w:86%"></i></div><div class="skill-list"><span>Canva</span><span>Reels & Carousels</span><span>Visual Consistency</span><span>Photography</span></div></article>
         <article class="skill-card languages reveal delay-2"><div class="skill-head"><h3>Languages</h3><b>04</b></div><div class="language-pills"><span>English</span><span>Hindi</span><span>Marathi</span><span>German · Basic</span></div></article>
       </div>
     </section>
 
     <section class="section navy tools-section" id="tools">
       <div class="section-head light reveal"><span class="section-number">07</span><div><p class="kicker">TOOLS & PLATFORMS</p><h2>Tools for creating,<br><em>researching & measuring.</em></h2></div></div>
-      <p class="section-intro light-copy reveal">My toolkit is centered on social media content, creative production, audience and trend research, SEO support and marketing performance analysis.</p>
+      <p class="section-intro light-copy reveal">A balanced toolkit across social media, content creation, SEO, audience research and analytics — using creative platforms alongside data tools to understand and improve marketing performance.</p>
       <div class="tools-grid">
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Used to create Instagram posts, promotional creatives, Reel covers, presentations and marketing visuals.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning tool included in my social media marketing toolkit.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH</small><h3>Google Trends</h3><p>Used for trend awareness, search-interest research and understanding audience interests.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>ANALYTICS SUPPORT</small><h3>Microsoft Excel</h3><p>Used for organizing marketing data, basic analysis, tracking and performance-oriented work.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Visual content creation for Instagram posts, Reel covers, carousels, presentations and marketing creatives.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning support for organizing and managing social content.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googlesearchconsole" alt="Google Search Console logo"><div><small>SEO</small><h3>Google Search Console</h3><p>Search-performance and indexing insights supporting SEO and website visibility work.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH / ANALYTICS</small><h3>Google Trends</h3><p>Trend and search-interest analysis for audience understanding, topic research and marketing decisions.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>Microsoft Excel</h3><p>Spreadsheet-based organization, calculations, tracking and basic marketing-performance analysis.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>BUSINESS INTELLIGENCE</small><h3>Power BI</h3><p>Interactive dashboards and data visualization for turning structured data into business insights.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQLite logo"><div><small>SQL / DATABASE</small><h3>SQL</h3><p>SQL-based data querying and analysis for exploring structured datasets and extracting business insights.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/googleanalytics" alt="Google Analytics logo"><div><small>MARKETING ANALYTICS</small><h3>Google Analytics</h3><p>Web and user analytics concepts for understanding traffic, engagement and digital performance.</p><b>Working Knowledge</b></div></article>
       </div>
-      <p class="tool-note reveal">Currently expanding my toolkit across social media, digital marketing, content strategy and marketing analytics.</p>
+      <p class="tool-note reveal">Currently expanding my toolkit across social media, digital marketing, content strategy, business intelligence and marketing analytics.</p>
     </section>
 
     <section class="section cream" id="certifications">

@@ -14,70 +14,102 @@
   <style>.contact-grid-single{grid-template-columns:minmax(0,1fr);justify-items:end}.contact-grid-single .contact-panel{width:min(100%,680px)}</style>
 
 <style>
-/* Portfolio refinements: balanced marketing + analytics, stronger card depth */
+/* Final layout refinement: compact experience cards + visible 3D depth */
 .experience-card {
-  gap: 34px !important;
-  padding: 42px !important;
+  width: min(100%, 1040px) !important;
+  margin-inline: auto !important;
+  padding: 30px !important;
+  gap: 30px !important;
+  min-height: 0 !important;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 .experience-card + .experience-card {
-  margin-top: 28px !important;
+  margin-top: 22px !important;
+}
+.exp-side {
+  min-width: 260px !important;
+  padding: 28px 25px !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+.exp-mark {
+  font-size: clamp(90px, 9vw, 118px) !important;
+  line-height: .9 !important;
+  opacity: .30 !important;
+  letter-spacing: -0.08em !important;
+}
+.exp-body {
+  padding: 8px 10px !important;
+  transform: translateZ(18px);
+}
+.exp-body h3 {
+  margin-bottom: 28px !important;
 }
 .exp-columns {
-  gap: 48px !important;
+  gap: 42px !important;
 }
 .exp-columns > div {
-  padding: 8px 0;
+  min-width: 0;
 }
 .exp-columns h4 {
-  margin-bottom: 18px !important;
+  margin-bottom: 14px !important;
 }
 .exp-columns ul {
-  margin-top: 0 !important;
-  padding-left: 22px !important;
+  padding-left: 20px !important;
+  margin: 0 !important;
 }
 .exp-columns li {
-  margin-bottom: 12px !important;
-  line-height: 1.65 !important;
+  margin-bottom: 10px !important;
+  line-height: 1.55 !important;
 }
-.experience-card,
-.project-card,
+.experience-card:hover {
+  transform: perspective(1200px) translateY(-6px) rotateX(1.5deg) rotateY(-1.5deg) !important;
+  box-shadow: 0 24px 48px rgba(0,0,0,.16) !important;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
 .tool-card,
+.project-card,
 .skill-card,
 .education-card,
 .cert-card {
   transform-style: preserve-3d;
-  will-change: transform;
-}
-.experience-card:hover,
-.project-card:hover,
-.tool-card:hover,
-.skill-card:hover,
-.education-card:hover,
-.cert-card:hover {
-  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
-  transition: transform .35s ease, box-shadow .35s ease;
-}
-.experience-card::after,
-.project-card::after,
-.tool-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  transform: translateZ(1px);
 }
 .tool-card {
   perspective: 1000px;
   transition: transform .18s ease-out, box-shadow .25s ease;
 }
 .tool-card > * {
-  transform: translateZ(18px);
+  transform: translateZ(16px);
 }
-.exp-body, .project-content, .skill-card > *, .edu-main, .cert-body {
-  transform: translateZ(10px);
+.tool-card:hover,
+.project-card:hover,
+.skill-card:hover,
+.education-card:hover,
+.cert-card:hover {
+  transform: translateY(-6px) rotateX(1deg) rotateY(-1deg);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+@media (max-width: 900px) {
+  .experience-card { width: 100% !important; padding: 22px !important; }
+  .exp-side { min-width: 0 !important; padding: 22px !important; }
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(1000px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 9).toFixed(2)}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('[data-tilt]');
@@ -166,37 +198,36 @@ He enjoys understanding audiences, translating brand ideas into content, researc
       <div class="section-head reveal"><span class="section-number">06</span><div><p class="kicker">SKILLS</p><h2>Creative thinking,<br><em>structured execution.</em></h2></div></div>
       <p class="section-intro reveal">Core capabilities drawn from my CV and practical work. These represent areas I am actively developing through projects and experience.</p>
       <div class="skills-grid">
-        <article class="skill-card reveal"><div class="skill-head"><h3>Social Media Marketing</h3><b>CORE</b></div><div class="bar"><i style="--w:88%"></i></div><div class="skill-list"><span>Content Strategy</span><span>Instagram Planning</span><span>Hooks & CTAs</span><span>Social Media KPIs</span></div></article>
-        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Digital Marketing & SEO</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>SEO</span><span>Keyword Research</span><span>Campaign Planning</span><span>Paid Advertising</span></div></article>
-        <article class="skill-card reveal delay-2"><div class="skill-head"><h3>Marketing & Strategy</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>Market Research</span><span>Competitor Analysis</span><span>Brand Positioning</span><span>Audience Understanding</span></div></article>
-        <article class="skill-card reveal"><div class="skill-head"><h3>Analytics & Data</h3><b>SUPPORT</b></div><div class="bar"><i style="--w:76%"></i></div><div class="skill-list"><span>SQL</span><span>Power BI</span><span>MS Excel</span><span>Data Visualization</span></div></article>
-        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Content & Creative</h3><b>CORE</b></div><div class="bar"><i style="--w:86%"></i></div><div class="skill-list"><span>Canva</span><span>Reels & Carousels</span><span>Visual Consistency</span><span>Photography</span></div></article>
+        <article class="skill-card reveal"><div class="skill-head"><h3>Social Media Marketing</h3><b>CORE</b></div><div class="bar"><i style="--w:88%"></i></div><div class="skill-list"><span>Content Strategy</span><span>Hootsuite</span><span>Hooks & CTAs</span><span>Social Media KPIs</span></div></article>
+        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Digital Marketing & SEO</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>Paid Advertising</span><span>SEO</span><span>Keyword Research</span><span>Campaign Planning</span></div></article>
+        <article class="skill-card reveal delay-2"><div class="skill-head"><h3>Marketing & Strategy</h3><b>CORE</b></div><div class="bar"><i style="--w:84%"></i></div><div class="skill-list"><span>Brand Positioning</span><span>Competitor & Market Research</span><span>Audience Understanding</span><span>Content-Performance Analysis</span></div></article>
+        <article class="skill-card reveal"><div class="skill-head"><h3>Analytics & Data</h3><b>SUPPORT</b></div><div class="bar"><i style="--w:76%"></i></div><div class="skill-list"><span>SQL</span><span>Power BI</span><span>MS Excel</span></div></article>
+        <article class="skill-card reveal delay-1"><div class="skill-head"><h3>Creative & Content</h3><b>CORE</b></div><div class="bar"><i style="--w:86%"></i></div><div class="skill-list"><span>Canva</span><span>Reels & Carousels</span><span>Photo Editing</span><span>Video Editing</span></div></article>
         <article class="skill-card languages reveal delay-2"><div class="skill-head"><h3>Languages</h3><b>04</b></div><div class="language-pills"><span>English</span><span>Hindi</span><span>Marathi</span><span>German · Basic</span></div></article>
-      </div>
-    </section>
+      </div></section>
 
     <section class="section navy tools-section" id="tools">
       <div class="section-head light reveal"><span class="section-number">07</span><div><p class="kicker">TOOLS & PLATFORMS</p><h2>Tools for creating,<br><em>researching & measuring.</em></h2></div></div>
-      <p class="section-intro light-copy reveal">A balanced toolkit across social media, content creation, SEO, audience research and analytics — using creative platforms alongside data tools to understand and improve marketing performance.</p>
+      <p class="section-intro light-copy reveal">A balanced toolkit across social media, content creation, research and analytics, reflecting the skills listed in my CVs.</p>
       <div class="tools-grid">
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Visual content creation for Instagram posts, Reel covers, carousels, presentations and marketing creatives.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management and planning support for organizing and managing social content.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googlesearchconsole" alt="Google Search Console logo"><div><small>SEO</small><h3>Google Search Console</h3><p>Search-performance and indexing insights supporting SEO and website visibility work.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH / ANALYTICS</small><h3>Google Trends</h3><p>Trend and search-interest analysis for audience understanding, topic research and marketing decisions.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>Microsoft Excel</h3><p>Spreadsheet-based organization, calculations, tracking and basic marketing-performance analysis.</p><b>Practical Experience</b></div></article>
-        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>BUSINESS INTELLIGENCE</small><h3>Power BI</h3><p>Interactive dashboards and data visualization for turning structured data into business insights.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQLite logo"><div><small>SQL / DATABASE</small><h3>SQL</h3><p>SQL-based data querying and analysis for exploring structured datasets and extracting business insights.</p><b>Working Knowledge</b></div></article>
-        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/googleanalytics" alt="Google Analytics logo"><div><small>MARKETING ANALYTICS</small><h3>Google Analytics</h3><p>Web and user analytics concepts for understanding traffic, engagement and digital performance.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/canva" alt="Canva logo"><div><small>DESIGN / CONTENT</small><h3>Canva</h3><p>Design and creative tool included in my social media and content skill set.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/hootsuite" alt="Hootsuite logo"><div><small>SOCIAL MEDIA</small><h3>Hootsuite</h3><p>Social media management tool listed in my social media marketing skills.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/googletrends" alt="Google Trends logo"><div><small>RESEARCH</small><h3>Google Trends</h3><p>Research and trend-awareness tool listed in my analytics and marketing toolkit.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/microsoftexcel" alt="Microsoft Excel logo"><div><small>DATA ANALYSIS</small><h3>MS Excel</h3><p>Spreadsheet and data-analysis tool listed in my analytics skills.</p><b>Practical Experience</b></div></article>
+        <article class="tool-card reveal delay-1" data-tilt><img src="https://cdn.simpleicons.org/powerbi" alt="Power BI logo"><div><small>DATA ANALYTICS</small><h3>Power BI</h3><p>Business intelligence and data-visualization tool listed in my analytics skills.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal delay-2" data-tilt><img src="https://cdn.simpleicons.org/sqlite" alt="SQL logo"><div><small>DATA ANALYTICS</small><h3>SQL</h3><p>Database querying skill listed in my data-analysis toolkit.</p><b>Working Knowledge</b></div></article>
+        <article class="tool-card reveal" data-tilt><img src="https://cdn.simpleicons.org/python" alt="Python logo"><div><small>DATA ANALYTICS</small><h3>Python</h3><p>Python is included in my CV at a basic level as part of my data-analysis toolkit.</p><b>Basic</b></div></article>
       </div>
-      <p class="tool-note reveal">Currently expanding my toolkit across social media, digital marketing, content strategy, business intelligence and marketing analytics.</p>
+      <p class="tool-note reveal">Marketing and analytics tools are presented together to reflect a broader, mixed marketing profile.</p>
     </section>
 
     <section class="section cream" id="certifications">
-      <div class="section-head reveal"><span class="section-number">08</span><div><p class="kicker">CERTIFICATIONS</p><h2>Learning that<br><em>supports the work.</em></h2></div></div>
+      <div class="section-head reveal"><span class="section-number">08</span><div><p class="kicker">CERTIFICATIONS</p><h2>Credentials that<br><em>support the story.</em></h2></div></div>
       <div class="cert-grid">
-        <article class="cert-card reveal"><div class="cert-image"><img src="assets/certificates/hubspot-ai-marketing.png" alt="HubSpot AI for Marketing certificate"></div><div class="cert-body"><span>HUBSPOT ACADEMY</span><h3>AI for Marketing</h3><p>Completed certification focused on applying AI concepts and tools within marketing workflows.</p><b>COMPLETED</b></div></article>
-        <article class="cert-card reveal delay-1"><div class="cert-image"><img src="assets/certificates/hubspot-digital-marketing.png" alt="HubSpot Digital Marketing certificate"></div><div class="cert-body"><span>HUBSPOT ACADEMY</span><h3>Digital Marketing</h3><p>Certification supporting knowledge across digital marketing, content, social media, search and measuring marketing results.</p><b>COMPLETED</b></div></article>
-        <article class="cert-card reveal delay-2"><div class="cert-image"><img src="assets/certificates/forage-data-labeling.png" alt="Forage Data Labeling Simulation certificate"></div><div class="cert-body"><span>FORAGE</span><h3>Data Labeling Simulation</h3><p>Completed practical simulation work involving data labeling and quality-focused review.</p><b>COMPLETED</b></div></article>
+        <article class="cert-card reveal"><div class="cert-image"><img src="assets/certificates/hubspot-digital-marketing.png" alt="HubSpot Digital Marketing Certified certificate"></div><div class="cert-body"><span>HUBSPOT ACADEMY</span><h3>Digital Marketing Certified</h3><p>Knowledge of digital marketing practices including search-friendly content, website optimization, social media strategy, video engagement, advertising, and measuring marketing results.</p><b>COMPLETED · VALID MAY 19, 2026 — JUN 18, 2027</b></div></article>
+        <article class="cert-card reveal delay-1"><div class="cert-image"><img src="assets/certificates/google-prepare-data-exploration.png" alt="Google Coursera Prepare Data for Exploration certificate"></div><div class="cert-body"><span>GOOGLE / COURSERA</span><h3>Prepare Data for Exploration</h3><p>Course certificate demonstrating completion of the supplied Google/Coursera data exploration credential.</p><b>COMPLETED</b></div></article>
+        <article class="cert-card reveal delay-2"><div class="cert-image"><img src="assets/certificates/deloitte-data-analytics.png" alt="Deloitte Data Analytics Job Simulation certificate"></div><div class="cert-body"><span>DELOITTE / FORAGE</span><h3>Data Analytics Job Simulation</h3><p>Completed practical tasks in data analysis and forensic technology.</p><b>COMPLETED · JULY 11, 2025</b></div></article>
+        <article class="cert-card reveal"><div class="cert-image"><img src="assets/certificates/forage-data-labeling.png" alt="Forage Data Labeling Job Simulation certificate"></div><div class="cert-body"><span>FORAGE</span><h3>Data Labeling Job Simulation</h3><p>Completed practical tasks in batch labeling, PII awareness, review, quality control and iteration.</p><b>COMPLETED · JANUARY 2, 2026</b></div></article>
       </div>
     </section>
 
